@@ -25,6 +25,8 @@ public class Juego {
             if (jugador.getPuntuacion() > 7.5) {
                 System.out.println("Lo siento, te has pasado de 7.5 puntos. ¡Has perdido!");
                 seguirJugando = false;
+                teclado.close();
+                return;
             }
 
             System.out.println("¿Quieres otra carta? (s/n)");
