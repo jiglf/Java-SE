@@ -1,1 +1,1 @@
-# No te lo pierdas voy a ir subiendo mis proyectos realizados en Java SE 
+# No te pierdas mis proyectos realizados en Java SE 
