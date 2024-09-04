@@ -1,1 +1,1 @@
-## Juego clásico del ahorcado, de adivinar la palabra de una lista
+## Juego clásico del ahorcado, basado en adivinar una palabra aleatoria
