@@ -33,17 +33,84 @@ public class Juego {
         return numeroIntentos;
     }
 
+    public static void dibujarFallo(int numeroIntento) {
+        switch(numeroIntento) {
+            case 0:System.out.println("""
+                ____
+                |   |
+                |  
+                |    
+               _|_
+            """);
+                break;
+            case 1:System.out.println("""
+                ____
+                |   |
+                |  ( ) 
+                |    
+               _|_
+            """);
+                break;
+                   
+            case 2: System.out.println("""
+                ____
+                |   |
+                |  ( ) 
+                |   | 
+               _|_
+            """);
+                break;
+
+            case 3:System.out.println("""
+                ____
+                |   |
+                |  ( ) 
+                |   | 
+               _|_ /  
+            """);
+                break;
+
+            case 4:System.out.println("""
+                ____
+                |   |
+                |  ( ) 
+                |   | 
+               _|_ / \\
+            """);
+                break;
+
+            case 5:System.out.println("""
+                ____
+                |   |
+                |  ( ) 
+                |   | -
+               _|_ / \\
+            """);
+                break;
+
+            case 6:System.out.println("""
+                ____
+                |   |
+                |  ( ) 
+                | - | -
+               _|_ / \\
+            """);
+                break;        
+
+        }
+    }
+
     public static void juego() {
         String objetivo = escogerPalabra();//eligo la palabra y la almaceno en variable
         char [] enJuego = generarGuiones(objetivo);//paso la palabra elegida a guiones
         char guion = '-';
-        int intentos = enJuego.length;
+        int intentos = 0;
         boolean adivinado = false;
 
         System.out.println("Bienvenido al juego del ahorcado");
         System.out.println("Intenta adivinar la palabra");
         System.out.println("\t" +String.valueOf(enJuego));
-        System.out.println("Intentos: " + intentos);
+        dibujarFallo(intentos);
 
         do {
             boolean acierto = false;
@@ -58,7 +125,8 @@ public class Juego {
                 }
             }
             if (!acierto) {//si falla disminuyo intentos
-                intentos--;
+                intentos++;
+                 
 
             }
             adivinado = true;
@@ -67,14 +135,14 @@ public class Juego {
             }
 
             System.out.println(String.valueOf(enJuego));
-            System.out.println("Intentos: " + intentos);
+            dibujarFallo(intentos);
 
-        } while(!adivinado && intentos > 0);   
+        } while(!adivinado && intentos < 6);   
         
         if (adivinado) {
             System.out.println("Enhorabuena, has acertado");
         } else {
-            System.out.println("Lo siento, has perdido. La palabra era " + objetivo);
+            System.out.println("Lo siento, has perdido. La palabra buscada era:  " + objetivo);
         }
     }
 
