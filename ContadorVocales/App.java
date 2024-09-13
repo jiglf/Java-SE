@@ -35,7 +35,7 @@ public class App {
                 case 'i':
                 case 'o':
                 case 'u':
-                        vocales++;
+                        vocales++;//al no ser excluyentes se puede usar los case sin break ya que todos hacen lo mismo que es aumentar vocales
                     break;        
 
             }
