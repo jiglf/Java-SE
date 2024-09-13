@@ -30,16 +30,13 @@ public class App {
 
          for (char letra : letraAnalizar) {
             switch (letra) {
-                case 'a':vocales++;
-                    break;
-                case 'e':vocales++;
-                    break;    
-                case 'i':vocales++;
-                    break;
-                case 'o':vocales++;
-                    break;
-                case 'u':vocales++;
-                    break; 
+                case 'a':
+                case 'e':    
+                case 'i':
+                case 'o':
+                case 'u':
+                        vocales++;
+                    break;        
 
             }
          }
