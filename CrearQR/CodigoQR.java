@@ -29,7 +29,8 @@ public class CodigoQR {
             String qrCodeText = "www.linkedin.com/in/jiglf"; //el texto que le quieres mandar al qr, en mi caso enlace a mi linkedin
             int width = 300;
             int height = 300;
-            String filePath = "C:\\Users\\juani\\workspace\\Java Basic\\qr\\QRJuanLinkedin.png";//donde se guarda el qr y el nombre que le quieras dar al codigo creado
+            String filePath = "....\\qr\\QRJuanLinkedin.png";
+            //donde se guarda el qr y el nombre que le quieras dar al codigo creado, no pongo mi ruta real pero te haces una idea
 
             generateQRCodeImage(qrCodeText, width, height, filePath);//genera el qr con la informacion proporcionada
 
