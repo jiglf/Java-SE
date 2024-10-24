@@ -1,10 +1,11 @@
 import java.time.Duration;
 import java.time.Instant;
+import java.util.Random;
 
 public class Ordenamientos {
     public static void main(String[] args) {
 
-        
+
 
         System.out.println("El metodo burbuja tarda " + tiempoBurbuja() + " milisegundos en ordenar");
 
@@ -14,25 +15,44 @@ public class Ordenamientos {
 
         
 
+       
         
 
     }
 
     //creo el array
     public static int[] numerosOrdenar() {
-        int [] numerosOrdenar = new int [500];
-        for (int i = 0; i < numerosOrdenar.length; i++) {//relleno el array con numeros del 500 al 1
-            numerosOrdenar[i] = 500 - i;
+        Random aleatorio = new Random();
+        int[] numerosOrdenar = new int[500];
+    
+        // creo un array de 500 posiciones con números aleatorios, diferentes para ejecutar el algoritmo de ordenamiento
+        for (int i = 0; i < numerosOrdenar.length; i++) {
+            int numeroGenerado;
+            boolean repetido; // variable booleana que determinará si un número está o no repetido en el array
+    
+            do {
+                repetido = false;
+                numeroGenerado = aleatorio.nextInt(500) + 1;
+    
+                // comprueba si el número esta repetido
+                for (int j = 0; j < i; j++) {
+                    if (numerosOrdenar[j] == numeroGenerado) {
+                        repetido = true; // si está repetido, sale y no lo incluye
+                        break;
+                    }
+                }
+            } while (repetido);
+    
+            // asigno del número generado al array
+            numerosOrdenar[i] = numeroGenerado;
         }
-
-        return numerosOrdenar;
-
+    
+        return numerosOrdenar; // retorno del array una vez lleno
     }
 
     //tiempos de ejecucción
 
     public static long tiempoBurbuja() {
-        //numerosOrdenar();
         Instant inicio = Instant.now();
         burbuja(numerosOrdenar());
         Instant fin = Instant.now();
