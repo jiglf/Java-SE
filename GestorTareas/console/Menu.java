@@ -17,9 +17,6 @@ public class Menu {
             System.out.println("--- Menú de Tareas ---");
             System.out.println("1. Agregar Tarea");
             System.out.println("2. Listar Todas");
-            System.out.println("3. Listar por Prioridad");
-            System.out.println("4. Listar por Fecha");
-            System.out.println("5. Marcar como Completada");
             System.out.println("0. Salir");
             System.out.print("Elige una opción: ");
 
@@ -33,15 +30,6 @@ public class Menu {
                 case 2:
                     System.out.println("Listar tareas");
                     showTask();
-                    break;
-                case 3:
-                    System.out.println("Listar por prioridad");
-                    break;
-                case 4:
-                    System.out.println("Listar por fecha");
-                    break;
-                case 5:
-                    System.out.println("Marcar como completada");
                     break;
                 case 0:
                     System.out.println("¡Hasta luego!");
@@ -75,11 +63,20 @@ public class Menu {
     }
 
     public static void showTask() {
+        //compruebo si la lista esta vacia
+        if (taskList.isEmpty()) {
+            System.out.println("No tienes tareas registradas");
+        } else {
+            int j = 1;
+            System.out.println("Tareas en el sistema: ");
+            for (Task t : taskList) {
+                System.out.println("---------- Tarea " + j + " ----------");
+                System.out.println(t);
+                j++;
 
-        System.out.println("Tareas en el sistema: ");
-        for (int i = 0; i < taskList.size(); i++){
-            System.out.println(" -------- Tarea " + i + " -------- " + taskList.get(i));
+            }
         }
+
 
     }
 }

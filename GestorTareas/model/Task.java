@@ -69,12 +69,12 @@ public class Task {
         //creo este formatter para darle formato espanhol en la salida de la fecha
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
-        return "\n" +
-                "TÍTULO     : " + title.toUpperCase() + "\n" +
-                "DESCRIPCIÓN: " + description + "\n" +
-                "FECHA      : " + formatter.format(registrationDate) + "\n" +
-                "PRIORIDAD  : " + priority + "\n" +
-                "COMPLETADA : " + completed + "\n";
+        return
+                "TÍTULO               : " + title.toUpperCase() + "\n" +
+                "DESCRIPCIÓN          : " + description + "\n" +
+                "FECHA DE REGISTRO    : " + formatter.format(registrationDate) + "\n" +
+                "PRIORIDAD            : " + priority + "\n" +
+                "COMPLETADA           : " + completed + "\n";
 
     }
 }
