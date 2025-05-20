@@ -5,6 +5,8 @@ import service.Manager;
 import utils.Priority;
 
 
+import java.io.FileWriter;
+import java.io.IOException;
 
 import static utils.StaticElements.keyboard;
 import static utils.StaticElements.taskList;
@@ -60,6 +62,7 @@ public class Menu {
         Task task = new Task(title, description, priority);
 
         Manager.addTask(task);
+        saveTask(task);
     }
 
     public static void showTask() {
@@ -76,7 +79,16 @@ public class Menu {
 
             }
         }
-
-
     }
+
+    public static void saveTask(Task task) {
+        try (FileWriter writer = new FileWriter("tareas.txt", true)) {
+            writer.write(String.valueOf(task));
+        } catch (IOException ioe) {
+            System.out.println("Error al guardar la tarea.");
+
+        }
+    }
+
+
 }
