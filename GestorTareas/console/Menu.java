@@ -5,6 +5,8 @@ import service.Manager;
 import utils.Priority;
 
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -31,7 +33,8 @@ public class Menu {
                     break;
                 case 2:
                     System.out.println("Listar tareas");
-                    showTask();
+                    //showTask();
+                    showFile();
                     break;
                 case 0:
                     System.out.println("¡Hasta luego!");
@@ -61,24 +64,8 @@ public class Menu {
         //creo la tarea con los datos introducidos, se creara tambien la tarea con los datos por defecto fecha y completada
         Task task = new Task(title, description, priority);
 
-        Manager.addTask(task);
+        
         saveTask(task);
-    }
-
-    public static void showTask() {
-        //compruebo si la lista esta vacia
-        if (taskList.isEmpty()) {
-            System.out.println("No tienes tareas registradas");
-        } else {
-            int j = 1;
-            System.out.println("Tareas en el sistema: ");
-            for (Task t : taskList) {
-                System.out.println("---------- Tarea " + j + " ----------");
-                System.out.println(t);
-                j++;
-
-            }
-        }
     }
 
     public static void saveTask(Task task) {
@@ -87,6 +74,22 @@ public class Menu {
         } catch (IOException ioe) {
             System.out.println("Error al guardar la tarea.");
 
+        }
+    }
+
+    public static void showFile() {
+        try (BufferedReader reader = new BufferedReader(new FileReader("tareas.txt"))) {
+            String linea;
+            System.out.println("TAREAS GUARDADAS:");
+            System.out.println("==================");
+
+            while ((linea = reader.readLine()) != null) {
+                System.out.println(linea);
+            }
+
+        } catch (IOException e) {
+            System.out.println("No se pudo leer el archivo de tareas.");
+            e.printStackTrace();
         }
     }
 
