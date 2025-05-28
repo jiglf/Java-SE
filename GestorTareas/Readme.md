@@ -1,4 +1,4 @@
-# Gestor de Tareas en Consola (Java)
+# Gestor de Tareas en Consola 
 
 Este proyecto es una aplicación de consola en Java que permite gestionar tareas personales. Las tareas se almacenan en un archivo de texto y pueden visualizarse mediante la consola.
 
