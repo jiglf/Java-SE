@@ -4,13 +4,10 @@ package service;
 import model.Task;
 import utils.Priority;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.util.List;
 
-
-import static utils.StaticElements.keyboard;
+import static utils.StaticElements.*;
 
 
 public class Manager {
@@ -33,8 +30,11 @@ public class Manager {
       //creo la tarea con los datos introducidos, se creara tambien la tarea con los datos por defecto fecha y completada
       Task task = new Task(title, description, priority);
 
+      //añado a la lista el objeto tarea creado
+      listTask.add(task);
 
-      saveTask(task);
+      saveTasksToJson(listTask);//guarda la tarea en el fichero formato json
+      saveTask(task);//guarda la tarea en el fichero plano
    }
 
    public static void saveTask(Task task) {
@@ -43,6 +43,14 @@ public class Manager {
       } catch (IOException ioe) {
          System.out.println("Error al guardar la tarea.");
 
+      }
+   }
+
+   public static void saveTasksToJson(List<Task> tasks) {
+      try (FileWriter writer = new FileWriter("tareas.json")) {
+         gson.toJson(tasks, writer);
+      } catch (IOException e) {
+         System.out.println("Error al guardar tareas.");
       }
    }
 

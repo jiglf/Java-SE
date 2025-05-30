@@ -2,14 +2,16 @@ package model;
 
 import utils.Priority;
 
+import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
-public class Task {
+import static utils.StaticElements.formatter;
+
+public class Task implements Serializable {
 
     private String title;
     private String description;
-    private LocalDate registrationDate;
+    private String registrationDate;// a pesar de ser una fecha la declaro String para guardarlo en el JSON
     private Priority priority;
     private boolean completed;
 
@@ -18,7 +20,7 @@ public class Task {
         this.title = title;
         this.description = description;
         this.priority = priority;
-        registrationDate = LocalDate.now();//la fecha actual en la cual se crea la tarea
+        registrationDate = LocalDate.now().format(formatter);//la fecha actual en formato String
         completed = false;//al crear una tarea por defecto se crea como no completada
 
     }
@@ -55,26 +57,24 @@ public class Task {
         this.completed = completed;
     }
 
-    public LocalDate getRegistrationDate() {
+    public String getRegistrationDate() {
         return registrationDate;
     }
 
-    public void setRegistrationDate(LocalDate registrationDate) {
+    public void setRegistrationDate(String registrationDate) {
         this.registrationDate = registrationDate;
     }
 
     @Override
     public String toString() {
 
-        //creo este formatter para darle formato espanhol en la salida de la fecha
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-
         return
                 "TÍTULO               : " + title.toUpperCase() + "\n" +
                 "DESCRIPCIÓN          : " + description + "\n" +
-                "FECHA DE REGISTRO    : " + formatter.format(registrationDate) + "\n" +
+                "FECHA DE REGISTRO    : " + registrationDate + "\n" +
                 "PRIORIDAD            : " + priority + "\n" +
-                "COMPLETADA           : " + completed + "\n";
+                "COMPLETADA           : " + completed + "\n" +
+                "\n";
 
     }
 }
