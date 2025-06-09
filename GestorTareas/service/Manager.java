@@ -1,10 +1,13 @@
 package service;
 
 
+import com.google.gson.reflect.TypeToken;
 import model.Task;
 import utils.Priority;
 
 import java.io.*;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 import static utils.StaticElements.*;
@@ -70,6 +73,41 @@ public class Manager {
       }
    }
 
+   public static List<Task> loadTasksFromJson() {
+      List<Task> tasks = new ArrayList<>();
+      try (Reader reader = new FileReader("tareas.json")) {
+         Type taskListType = new TypeToken<List<Task>>() {}.getType();
+         /*
+         Gson necesita este Type especial para entender que no es solo Task, sino List<Task>.
+🔸       Por uso TypeToken
+          */
+         tasks = gson.fromJson(reader, taskListType);
+         if (tasks == null) {
+            tasks = new ArrayList<>(); // Si el archivo está vacío o no hay tareas
+         }
+      } catch (FileNotFoundException e) {
+         // Si el archivo no existe aún, devolvemos la lista vacía
+      } catch (IOException e) {
+         System.out.println("Error al leer tareas desde JSON.");
+      }
+      return tasks;
+   }
+
+   //para mostrar las tareas guardadas en el JSON
+   public static void showPendingTasks() {
+      List<Task> tasks = loadTasksFromJson();  // Carga las tareas desde JSON
+      if (tasks.isEmpty()) {
+         System.out.println("No hay tareas guardadas.");
+         return;
+      }
+
+      System.out.println("Tareas pendientes:");
+      for (Task t : tasks) {
+         if (!t.isCompleted()) {
+            System.out.println(t);  // usa toString() de Task para mostrar
+         }
+      }
+   }
 
 
 }
