@@ -16,6 +16,9 @@ import static utils.StaticElements.*;
 public class Manager {
 
    public static void includeTask() {
+      //cargo las tareas existentes ya en el JSON para añadir y no sobreescribir
+      listTask = loadTasksFromJson();
+
       System.out.print("Indica el titulo de la tarea: ");
       String title = keyboard.nextLine();
       System.out.print("Introduce la descripción de la tarea: ");
@@ -104,7 +107,7 @@ public class Manager {
       System.out.println("Tareas pendientes:");
       for (Task t : tasks) {
          if (!t.isCompleted()) {
-            System.out.println(t);  // usa toString() de Task para mostrar
+            System.out.println(t);  
          }
       }
    }
